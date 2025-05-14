@@ -4,7 +4,7 @@ Follow the steps below to set up the environment and install the required depend
 
 ## Prerequisites
 
-- Ensure you have [Conda](https://docs.conda.io/en/latest/miniconda.html) installed on your system.
+- [Conda](https://docs.conda.io/en/latest/miniconda.html) installed on your system.
 - A compatible NVIDIA GPU with CUDA support is recommended.
 
 ## Installation Steps
@@ -34,7 +34,7 @@ Follow the steps below to set up the environment and install the required depend
     ```
 
 5. **Install PyTorch Scatter**  
-    Install the `pytorch-scatter` package (if a wheel is not available, pip downloads the source code, builds the wheel and then install the wheel):
+    Install the `torch-scatter` package:
     ```bash
     pip install torch-scatter
     ```
@@ -44,10 +44,11 @@ Follow the steps below to set up the environment and install the required depend
     ```bash
     pip install "git+https://github.com/facebookresearch/pytorch3d.git"
     ```
+
 7. **Install Additional Python Libraries**  
     Install additional libraries required for the project:
     ```bash
-    pip install opencv-python matplotlib tqdm
+    pip install opencv-python matplotlib tqdm draccus termcolor datasets jsonlines safetensors imageio "einops>=0.8.0"
     ```
 
 8. **Install Blender Python API**  
@@ -55,25 +56,28 @@ Follow the steps below to set up the environment and install the required depend
     ```bash
     pip install bpy
     ```
+
+9. **Install Project Requirements**  
+    Install any remaining dependencies listed in `requirements.txt`:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+10. **Install FFmpeg**  
+     Install FFmpeg via Conda:
+     ```bash
+     conda install ffmpeg=7.1.1 -c conda-forge
+     ```
+
+11. **Install Project in Editable Mode (with feetech extras)**  
+     From the project root directory:
+     ```bash
+     cd ~/lerobot && pip install -e ".[feetech]"
+     ```
+
 ## Notes
 
 - Ensure your GPU drivers and CUDA version are compatible with the installed PyTorch version.
 - If you encounter any issues, refer to the official documentation of the respective libraries for troubleshooting.
 
 You are now ready to use Mesh Cloth GAN!
-
-pip install draccus
-pip install termcolor
-
-
-pip install datasets
-pip install jsonlines
-pip install safetensors
-pip install imageio
-pip install einops>=0.8.0
-
-pip install -r requirements.txt
-
-conda install ffmpeg=7.1.1 -c conda-forge
-
-cd ~/lerobot && pip install -e ".[feetech]"
