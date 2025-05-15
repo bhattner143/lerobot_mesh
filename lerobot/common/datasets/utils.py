@@ -35,11 +35,11 @@ from huggingface_hub.errors import RevisionNotFoundError
 from PIL import Image as PILImage
 from torchvision import transforms
 
-from lerobot.common.datasets.backward_compatibility import (
-    V21_MESSAGE,
-    BackwardCompatibilityError,
-    ForwardCompatibilityError,
-)
+# from lerobot.common.datasets.backward_compatibility import (
+#     V21_MESSAGE,
+#     BackwardCompatibilityError,
+#     ForwardCompatibilityError,
+# )
 from lerobot.common.robot_devices.robots.utils import Robot
 from lerobot.common.utils.utils import is_valid_numpy_dtype_string
 from lerobot.configs.types import DictLike, FeatureType, PolicyFeature
