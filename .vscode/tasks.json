@@ -79,7 +79,7 @@
       }
     },
     {
-      "label": "🕹️ Collect Data-->Run 2 episodes",
+      "label": "🕹️ Collect Data-->Run 20 episodes",
       "type": "shell",
       "command": "python3",
       "args": [
@@ -88,14 +88,14 @@
         "--control.type=record",
         "--control.fps=30",
         "--control.single_task=Drag a cloth to a line marker.",
-        "--control.repo_id=datasets_lerobot/so100_test_2025_05_14",
+        "--control.repo_id=datasets_lerobot/so100_test_2025_05_15",
         //"--control.tags=[\"so100\",\"tutorial\"]",
         "--control.warmup_time_s=5",
         "--control.episode_time_s=15",
         "--control.reset_time_s=10",
         "--control.num_episodes=20",
         "--control.local_files_only=true",
-        "--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14"
+        "--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_15"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -159,7 +159,7 @@
       "args": [
         "-m", "scripts.train_dips_v2",
         //"--config_path=/home/dips/Documents/datasets_lerobot/so100_test",
-        "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14",
+        "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_15",
         "--policy.type=diffusion",
         //"--policy.name_cloth=t_shirt_l3",
         //"--policy.cloth_model_config=mesh_gat",

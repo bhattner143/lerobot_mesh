@@ -153,16 +153,6 @@
                 "--control.push_to_hub=true"
             ]
         },
-        {
-            "name": "Python: Convert Dataset v20 to v21",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}/lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py",
-            "console": "integratedTerminal",
-            "args": [
-                "--repo-id=lerobot/so100_test"
-            ]
-        },
         //
         {
             "name": "🧑‍💻Train ACT Policy --> So100 flattening and dragging",
@@ -267,7 +257,18 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "🕹️ Collect Data-->Run 2 episodes",
+            "name": "🕹️Control Robot--> Test OpenCV Camera",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/robot_devices/cameras/opencv.py",
+            "console": "integratedTerminal",
+            "args": [
+            "--images-dir",
+            "/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14/outputs/images_from_opencv_cameras"
+            ]
+        },
+        {
+            "name": "🕹️ Collect Data-->Run 1 episodes",
             "type": "debugpy",
             "request": "launch",
             //"program": "${workspaceFolder}/lerobot/scripts/control_robot.py",
@@ -278,16 +279,26 @@
               "--control.type=record",
               "--control.fps=30",
               "--control.single_task=Drag a cloth to a line marker.",
-              "--control.repo_id=datasets_lerobot/so100_test_so100_test_2025_05_14",
+              "--control.repo_id=datasets_lerobot/so100_test_so100_test_2025_05_15",
               //"--control.tags=[\"so100\",\"tutorial\"]",
               "--control.warmup_time_s=5",
               "--control.episode_time_s=10",
               "--control.reset_time_s=10",
               "--control.num_episodes=1",
               "--control.local_files_only=true",
-              "--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14"
+              "--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_15"
             ],
             "console": "integratedTerminal"
+        },
+        {
+            "name": "🕹️ Convert Data--> Convert Dataset v20 to v21",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--repo-id=datasets_lerobot/so100_test_so100_test_2025_05_15"
+            ]
         },
         {
             "name": "🤖 Eval ACT Policy-->So!00 flattening and dragging",
@@ -315,6 +326,7 @@
             ],
             "console": "integratedTerminal"
         },
+        
         {
             "name": "🤖 Eval ACT Policy with MeshGAT for So100 Task",
             "type": "debugpy",
