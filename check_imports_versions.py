@@ -35,26 +35,70 @@ def check_versions():
     except ImportError:
         print("❌ torchvision not installed")
 
+    # Torch-Scatter
+    try:
+        import torch_scatter
+        print(f"✅ torch-scatter: {torch_scatter.__version__}")
+    except ImportError:
+        print("❌ torch-scatter not installed")
+    
     # TorchAudio
-    # try:
-    #     import torchaudio
-    #     print(f"✅ torchaudio: {torchaudio.__version__}")
-    # except ImportError:
-    #     print("❌ torchaudio not installed")
-
-    # # Torch-Scatter
-    # try:
-    #     import torch_scatter
-    #     print(f"✅ torch-scatter: {torch_scatter.__version__}")
-    # except ImportError:
-    #     print("❌ torch-scatter not installed")
+    try:
+        import torchaudio
+        print(f"✅ torchaudio: {torchaudio.__version__}")
+    except ImportError:
+        print("❌ torchaudio not installed")
 
     # PyTorch3D
     try:
         import pytorch3d
+
         print(f"✅ pytorch3d: {pytorch3d.__version__}")
     except ImportError:
         print("❌ pytorch3d not installed")
+
+    # FFmpeg
+    try:
+        import subprocess
+        result = subprocess.run(["ffmpeg", "-version"], capture_output=True, text=True)
+        if result.returncode == 0:
+            first_line = result.stdout.splitlines()[0]
+            print(f"✅ ffmpeg: {first_line}, ✅ required by torchcodec")
+        else:
+            print("❌ ffmpeg not found or failed to run, ⚠️required by torchcodec")
+    except Exception as e:
+        print(f"❌ ffmpeg check failed: {e}, ⚠️required by torchcodec")
+
+    # Check for libnpp and libnvrtc CUDA libraries
+
+    try:
+        import ctypes.util
+        npp = ctypes.util.find_library("nppc")
+        nvrtc = ctypes.util.find_library("nvrtc")
+        if npp:
+            print(f"✅ libnpp found: {npp}, ✅required by torchcodec")
+        else:
+            print("❌ libnpp not found, ⚠️required by torchcodec")
+        if nvrtc:
+            print(f"✅ libnvrtc found: {nvrtc}, ✅required by torchcodec")
+        else:
+            print("❌ libnvrtc not found, ⚠️required by torchcodec")
+    except Exception as e:
+        print(f"❌ Error checking CUDA libraries: {e}")
+ 
+    # ffmpeg -decoders | grep -i nvidia
+    # To check that FFmpeg libraries work with NVDEC correctly you can decode a sample video:
+    # ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i /home/dips/Documents/datasets_lerobot/so100_test_2025_05_15/videos/chunk-000/observation.images.rgb_intel_real_sense/episode_000000.mp4 -f null -
+        
+    # import torchcodec
+    # from torchcodec.decoders import VideoDecoder
+    try:
+        import torchcodec
+        print(f"✅ torchcodec: {torchcodec.__version__}")
+    except ImportError:
+        print("❌ torchcodec not installed")
+
+    
 
 if __name__ == "__main__":
     check_versions()

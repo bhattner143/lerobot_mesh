@@ -74,7 +74,14 @@ Follow the steps below to set up the environment and install the required depend
      ```bash
      cd ~/lerobot && pip install -e ".[feetech]"
      ```
-
+12. **Troubleshooting torchcodec Errors**  
+    If you encounter an error such as  
+    `Could not load libtorchcodec. Likely causes: 1. FFmpeg is not properly installed in your environment. We support versions 4, 5, 6 and 7`,  
+    follow these steps:
+    ```bash
+    pip uninstall torchcodec
+    pip install --upgrade torchcodec --index-url=https://download.pytorch.org/whl/cu124
+    ```
 ## Notes
 
 - Ensure your GPU drivers and CUDA version are compatible with the installed PyTorch version.
