@@ -1,0 +1,221 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run: Visualize Dataset",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/lerobot/scripts/visualize_dataset_dips.py",
+        "--repo_id=datasets_lerobot/so100_test",
+        "--episode_index=0",
+        "--root=/home/dips/Documents/datasets_lerobot/so100_test",
+        "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/visualizations",
+        "--batch_size=32",
+        "--num_workers=4",
+        "--mode=local",
+        "--web_port=9090",
+        "--ws_port=9087",
+        "--save=1",
+        "--tolerance_s=1e-4"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🕹️ Control Robot --> Calibrate follower and leader",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "scripts.control_robot",
+        "--robot.type=so100",
+        "--robot.cameras={}",
+        "--control.type=calibrate",
+        "--control.arms='[\"main_follower\"]'"
+          ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },  
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🕹️ Control Robot-->Teleoperation",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "scripts.control_robot",
+        "--robot.type=so100",
+        "--robot.cameras={}",
+        "--control.type=teleoperate"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🕹️ Collect Data-->Run 2 episodes",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "-m", "scripts.control_robot",
+        "--robot.type=so100",
+        "--control.type=record",
+        "--control.fps=30",
+        "--control.single_task=Drag a cloth to a line marker.",
+        "--control.repo_id=datasets_lerobot/so100_test_2025_05_14",
+        //"--control.tags=[\"so100\",\"tutorial\"]",
+        "--control.warmup_time_s=5",
+        "--control.episode_time_s=15",
+        "--control.reset_time_s=10",
+        "--control.num_episodes=20",
+        "--control.local_files_only=true",
+        "--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Train So100_test for cloth flattening and dragging (CLI)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/lerobot/scripts/train_dips.py",
+        "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test",
+        "--policy.type=act_advanced",
+        "--dataset.repo_id=datasets_lerobot/so100_test",
+        "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test//outputs/train/act_so100_test_2",
+        "--wandb.enable=true",
+        "--save_config_train=False"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Train So100_test for cloth flattening and dragging (CLI)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/lerobot/scripts/train_dips.py",
+        "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test",
+        "--policy.type=act_advanced",
+        "--dataset.repo_id=datasets_lerobot/so100_test",
+        "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test//outputs/train/act_so100_test_2",
+        "--wandb.enable=true",
+        "--save_config_train=False"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🧑‍💻 Train Diffusion Policy --> So100 flattening and dragging",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "-m", "scripts.train_dips_v2",
+        //"--config_path=/home/dips/Documents/datasets_lerobot/so100_test",
+        "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14",
+        "--policy.type=diffusion",
+        //"--policy.name_cloth=t_shirt_l3",
+        //"--policy.cloth_model_config=mesh_gat",
+        //"--policy.n_obs_steps=10",
+        "--dataset.repo_id=datasets_lerobot/so100_test_2025_05_14",
+        "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14/outputs/train/diffusion_so100",
+        //"--policy.device=cuda",
+        "--wandb.enable=false",
+        "--save_config_train=True",
+        //"--dataset.local_files_only=true"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Control Robot with Pretrained ACT Policy",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "--robot.type=so100",
+        "--control.type=record",
+        "--control.fps=30",
+        "--control.single_task=Grasp a lego block and put it in the bin.",
+        "--control.repo_id=datasets_lerobot/eval_so100_test",
+        "--control.tags=[\"so100\",\"tutorial\"]",
+        "--control.warmup_time_s=5",
+        "--control.episode_time_s=30",
+        "--control.reset_time_s=30",
+        "--control.num_episodes=10",
+        "--control.local_files_only=true",
+          //"--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2"
+        "--control.policy.path=outputs/train/act_so100_test/checkpoints/100000/pretrained_model"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+  ]
+}

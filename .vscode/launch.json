@@ -1,0 +1,389 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "▶️ Test RobotConfig class ",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/robot_devices/robots/configs.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "▶️ Test ManipulatorRobot class ",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/robot_devices/robots/manipulator.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Run: Visualize Dataset",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/visualize_dataset_dips.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--repo_id=datasets_lerobot/so100_test",
+                "--episode_index=0",
+                "--root=/home/dips/Documents/datasets_lerobot/so100_test",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/visualizations",
+                "--batch_size=32",
+                "--num_workers=4",
+                "--mode=local",
+                "--web_port=9090",
+                "--ws_port=9087",
+                "--save=1",
+                "--tolerance_s=1e-4"
+            ]
+        },
+        {
+            "name": "Python: Train DIPS Aloha Transfer Cube",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/train_dips.py",
+            "console": "integratedTerminal",
+            "args": [
+            "--policy.type=act",
+            "--dataset.repo_id=lerobot/aloha_sim_transfer_cube_human",
+            "--env.type=aloha",
+            "--env.task=AlohaTransferCube-v0",
+            "--output_dir=/home/dips/Documents/datasets_lerobot/aloha_sim_transfer_cube_human/outputs/train/act_aloha_transfer"
+            ]
+        },
+        {
+            "name": "Python: Train DIPS SO100 Test Transfer",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/train_dips.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--policy.type=act",
+                "--dataset.repo_id=lerobot/so100_test",
+                "--env.type=aloha",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so100_test_transfer_2"
+            ]
+        },
+        {
+            "name": "Python: Run test_args_passing_2.py with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/test_args_pssing_2.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--policy.type=act",
+                "--dataset.repo_id=lerobot/so_100_tele_op_cloth_flatening",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so_100_transfer"
+            ]
+        },
+        {
+            "name": "Python: Run test_draccus.py with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/test_draccus.py",
+            "console": "integratedTerminal",
+            "args": [
+            "--policy_type=baap",
+            "--optimizer=adam_dips",
+            "--scheduler=linear_dips"
+            ]
+        },
+        {
+            "name": "Python: Test Lerobot Dataset",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/test_lerobot_dataset.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--policy.type=act",
+                "--dataset.repo_id=lerobot/so100_test",
+                "--env.type=aloha",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so100_test_transfer_2"
+            ]
+        },
+        {
+            "name": "Python: Train DIPS Aloha Transfer Cube (CLI)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/train_dips.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--policy.type=act",
+                "--dataset.repo_id=lerobot/aloha_sim_transfer_cube_human",
+                "--env.type=aloha",
+                "--env.task=AlohaTransferCube-v0",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/aloha_sim_transfer_cube_human/outputs/train/act_aloha_transfer"
+            ]
+        },
+        {
+            "name": "Python: Train DIPS Aloha Mobile Cabinet (CLI)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/scripts/train_dips.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--policy.type=act",
+                "--dataset.repo_id=lerobot/aloha_mobile_cabinet",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/aloha_mobile_cabinet/outputs/train/act_aloha_mobile_cabinet"
+            ]
+        },
+        {
+            "name": "Python: Control Robot with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/control_robot_dips.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--robot.type=so100",
+                "--control.type=record",
+                "--control.fps=30",
+                "--control.single_task=Grasp a lego block and put it in the bin.",
+                "--control.repo_id=${HF_USER}/so100_test",
+                "--control.tags=[\"so100\",\"tutorial\"]",
+                "--control.warmup_time_s=5",
+                "--control.episode_time_s=30",
+                "--control.reset_time_s=30",
+                "--control.num_episodes=2",
+                "--control.push_to_hub=true"
+            ]
+        },
+        {
+            "name": "Python: Convert Dataset v20 to v21",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--repo-id=lerobot/so100_test"
+            ]
+        },
+        //
+        {
+            "name": "🧑‍💻Train ACT Policy --> So100 flattening and dragging",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/train_dips.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                //"--config_path=/home/dips/Documents/datasets_lerobot/so100_test",
+                "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test",
+                "--policy.type=act_advanced",
+                "--dataset.repo_id=datasets_lerobot/so100_test",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so100_test_2",
+                //"--device=cuda",
+                "--wandb.enable=false",
+                "--save_config_train=False",
+                //"--dataset.local_files_only=true"
+            ]
+        },
+        {
+            "name": "🧑‍💻Train ACT Policy with MeshGAT --> So100 flattening and dragging",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/train_dips_v2.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                //"--config_path=/home/dips/Documents/datasets_lerobot/so100_test",
+                "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test",
+                "--policy.type=act_mesh_gat",
+                "--policy.name_cloth=t_shirt_l3",
+                "--policy.cloth_model_config=mesh_gat",
+                //"--policy.n_obs_steps=10",
+                "--dataset.repo_id=datasets_lerobot/so100_test",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so100_mesh_gat_test",
+                //"--policy.device=cuda",
+                "--wandb.enable=false",
+                "--save_config_train=True",
+                
+                //"--dataset.local_files_only=true"
+            ]
+        },
+        {
+            "name": "🧑‍💻 Train Diffusion Policy --> So100 flattening and dragging",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/train_dips_v2.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                //"--config_path=/home/dips/Documents/datasets_lerobot/so100_test",
+                "--dataset.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14",
+                "--policy.type=diffusion",
+                //"--policy.name_cloth=t_shirt_l3",
+                //"--policy.cloth_model_config=mesh_gat",
+                //"--policy.n_obs_steps=10",
+                "--dataset.repo_id=datasets_lerobot/so100_test_2025_05_14",
+                "--output_dir=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14/outputs/train/diffusion_so100",
+                //"--policy.device=cuda",
+                "--wandb.enable=false",
+                "--save_config_train=True",
+                
+                //"--dataset.local_files_only=true"
+            ]
+        },
+        {
+            "name": "🕹️ Control Robot-->Calibrate follower and leader",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "scripts.control_robot",
+            "cwd":"${workspaceFolder}",
+            "args": [
+              "--robot.type=so100",
+              "--robot.cameras={}",
+              "--control.type=calibrate",
+              "--control.arms=[\"main_follower\"]"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "🕹️ Control Robot-->Teleoperation",
+            "type": "debugpy",
+            "request": "launch",
+            //"program": "${workspaceFolder}/scripts/control_robot.py",
+            "module": "scripts.control_robot",
+            "cwd":"${workspaceFolder}",
+            "args": [
+              "--robot.type=so100",
+              "--robot.cameras={}",
+              "--control.type=teleoperate",
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "🕹️ Collect Data-->Run 2 episodes",
+            "type": "debugpy",
+            "request": "launch",
+            //"program": "${workspaceFolder}/lerobot/scripts/control_robot.py",
+            "module": "scripts.control_robot",
+            "cwd":"${workspaceFolder}",
+            "args": [
+              "--robot.type=so100",
+              "--control.type=record",
+              "--control.fps=30",
+              "--control.single_task=Drag a cloth to a line marker.",
+              "--control.repo_id=datasets_lerobot/so100_test_so100_test_2025_05_14",
+              //"--control.tags=[\"so100\",\"tutorial\"]",
+              "--control.warmup_time_s=5",
+              "--control.episode_time_s=10",
+              "--control.reset_time_s=10",
+              "--control.num_episodes=1",
+              "--control.local_files_only=true",
+              "--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_14"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "🤖 Eval ACT Policy-->So!00 flattening and dragging",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/control_robot.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+              "--robot.type=so100",
+              "--control.type=record",
+              "--control.fps=30",
+              "--control.single_task=Grasp a lego block and put it in the bin.",
+              "--control.repo_id=datasets_lerobot/eval_so100_test",
+              "--control.tags=[\"so100\",\"tutorial\"]",
+              "--control.warmup_time_s=5",
+              "--control.episode_time_s=30",
+              "--control.reset_time_s=30",
+              "--control.num_episodes=10",
+              "--control.local_files_only=true",
+              //"--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2"
+              "--control.policy.path=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so100_test/checkpoints/100000/pretrained_model"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "🤖 Eval ACT Policy with MeshGAT for So100 Task",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/control_robot_v2.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+            "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+              "--robot.type=so100",
+              "--control.type=record",
+              "--control.fps=30",
+              "--control.single_task=Grasp a lego block and put it in the bin.",
+              "--control.repo_id=datasets_lerobot/eval_so100_test",
+              "--control.tags=[\"so100\",\"tutorial\"]",
+              "--control.warmup_time_s=5",
+              "--control.episode_time_s=30",
+              "--control.reset_time_s=30",
+              "--control.num_episodes=10",
+              "--control.local_files_only=true",
+              //"--control.root=/home/dips/Documents/datasets_lerobot/so100_test_2"
+              "--control.policy.path=/home/dips/Documents/datasets_lerobot/so100_test/outputs/train/act_so100_test/checkpoints/100000/pretrained_model"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "🧪 Test--> clothmodel.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/models_cloth/clothmodel.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "🧪 Test--> configuration_act_mesh_gat.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/policies/act_mesh_gat/configuration_act_mesh_gat.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "🧪 Test--> modeling_act_mesh_gat.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/lerobot/common/policies/act_mesh_gat/modeling_act_mesh_gat.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ],
+    //"inputs": [
+        //{
+        //"id": "today",
+        //"type": "command",
+        //"command": "${config:python.pythonPath}",
+        //"args": [
+           // "-c",
+            //"from datetime import datetime; print(datetime.now().strftime('%Y%m%d'))"
+        //]
+        //}
+    //]
+}

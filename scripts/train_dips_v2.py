@@ -191,7 +191,7 @@ def train(cfg: TrainPipelineConfig):
     dataloader = torch.utils.data.DataLoader(
         dataset,
         num_workers=cfg.num_workers,
-        batch_size=1, #cfg.batch_size,
+        batch_size=32, #cfg.batch_size,
         shuffle=shuffle,
         sampler=sampler,
         pin_memory=device.type != "cpu",
@@ -226,7 +226,7 @@ def train(cfg: TrainPipelineConfig):
     """
     # Start the main training loop
     logging.info("Start offline training on a fixed dataset")
-    for _ in range(step,cfg.steps):
+    for _ in range(step,1):
         # Measure the time taken to load a batch of data
         start_time = time.perf_counter()
         batch = next(dl_iter)
