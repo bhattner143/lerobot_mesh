@@ -34,7 +34,7 @@ Follow the steps below to set up the environment and install the required depend
     ```
 
 5. **Install PyTorch Scatter**  
-    Install the `torch-scatter` package:
+    Install the `torch-scatter` package (if wheel is not found then it will be generated):
     ```bash
     pip install torch-scatter
     ```
