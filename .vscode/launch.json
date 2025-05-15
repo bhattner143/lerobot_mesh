@@ -297,7 +297,8 @@
             "program": "${workspaceFolder}/lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py",
             "console": "integratedTerminal",
             "args": [
-                "--repo-id=datasets_lerobot/so100_test_so100_test_2025_05_15"
+                "--repo-id=datasets_lerobot/so100_test_so100_test_2025_05_15",
+                "--root=/home/dips/Documents/datasets_lerobot/so100_test_2025_05_15",
             ]
         },
         {

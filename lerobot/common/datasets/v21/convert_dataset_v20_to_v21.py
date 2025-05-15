@@ -4,19 +4,6 @@
 This script will help you convert any LeRobot dataset already pushed to the hub from codebase version 2.0 to
 2.1. It will:
 
-- Generate per-episodes stats and writes them in `episodes_stats.jsonl`
-- Check consistency between these new stats and the old ones.
-- Remove the deprecated `stats.json`.
-- Update codebase_version in `info.json`.
-- Push this new version to the hub on the 'main' branch and tags it with "v2.1".
-
-Usage:
-
-```bash
-python lerobot/common/datasets/v21/convert_dataset_v20_to_v21.py \
-    --repo-id=aliberts/koch_tutorial
-```
-
 """
 
 import argparse
@@ -71,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--root",
         type=str,
-        default="/home/dips/Documents/datasets_lerobot/so100_test",
+        required=True,
         help="Root directory of the dataset. Defaults to '/home/dips/Documents/datasets_lerobot/so100_test'.",
     )
     parser.add_argument(
