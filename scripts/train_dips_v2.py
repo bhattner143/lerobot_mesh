@@ -226,7 +226,7 @@ def train(cfg: TrainPipelineConfig):
     """
     # Start the main training loop
     logging.info("Start offline training on a fixed dataset")
-    for _ in range(step,2):
+    for _ in range(step,cfg.steps):
         # Measure the time taken to load a batch of data
         start_time = time.perf_counter()
         batch = next(dl_iter)
