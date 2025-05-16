@@ -24,6 +24,17 @@
             }
         },
         {
+            "name": "▶️ Test SAM2 ",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/test_sam2.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
             "name": "Run: Visualize Dataset",
             "type": "debugpy",
             "request": "launch",
