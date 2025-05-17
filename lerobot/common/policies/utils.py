@@ -39,6 +39,7 @@ def get_device_from_parameters(module: nn.Module) -> torch.device:
 
     Note: assumes that all parameters have the same device
     """
+    module = module.module if hasattr(module, "module") else module
     return next(iter(module.parameters())).device
 
 
